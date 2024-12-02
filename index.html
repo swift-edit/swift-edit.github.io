@@ -351,20 +351,18 @@ td.gif {
     </div>
     <br />
     <div id="method" style="border-top:1px solid gray;">
-    <h2>Method</h2>
+    <h2>Method: Two-stage training for One-step Inversion Network</h2>
     <center>
-      <img src="images/method.png" style="width:80%;" />
+      <img src="images/method/main_diagram.pdf" style="width:80%;" />
     </center><br />
-    Given a real image and a target text prompt, we encode the target text and get the initial text embedding \(e_{tgt}\), then optimize it to reconstruct the input image, obtaining \(e_{opt}\). We then fine-tune the generative model to improve fidelity to the input image while fixing \(e_{opt}\). Finally, we interpolate \(e_{opt}\) with \(e_{tgt}\) to generate the edit result.
+    We introduce a two-stage training strategy to train a one-step inversion network that predicts the inverted noise to reconstruct a given source input image when passed through SBv2. This enables single-step reconstruction of any input images without further retraining.
     </div>
     <br />
     <div id="tedbench" style="border-top:1px solid gray;">
-    <h2>TEdBench</h2>
-    We introduce <i>TEdBench</i> (Textual Editing Benchmark), a novel collection of 100 pairs of input images and target texts describing a desired complex non-rigid edit. We hope that future research will benefit from TEdBench as a standardized evaluation set for this task. To that end, we make TEdBench publicly available, along with Imagic's results to allow for comparisons.<br /><br />
+    <h2>Method: Attention Rescaling for Mask-aware Editing (ARaM)</h2>
+    During inference, we develop a self-guided editing mask, which is automatically extracted from our one-step inversion network to locate edited regions. Based on this mask, we proposed an attention-rescaling technique to perform disentangled editing and control the editing strength while preserving essential background elements
     <center>
-      <a target="_blank" href="https://github.com/imagic-editing/imagic-editing.github.io/tree/main/tedbench" class="dl_link"><table><tr><td verticalalign="middle"><img src="images/github_icon.png" style="width:50px;" /></td><td verticalalign="middle">&nbsp;TEdBench</td></tr></table></a>
-	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a target="_blank" href="https://huggingface.co/datasets/bahjat-kawar/tedbench" class="dl_link"><table><tr><td verticalalign="middle"><img src="images/hf-logo.png" style="width:50px;" /></td><td verticalalign="middle">&nbsp;TEdBench</td></tr></table></a>
+        <img src="images/method/aram.png" style="width:80%;" />
     </center>
     </div>
     <br />
