@@ -37,11 +37,11 @@ table.authors > tr > td, table.authors > tbody > tr > td {
     color:gray;
     text-decoration:none;
 }
-table.demo1 {
+table.demo {
     width:90%;
     text-align:center;
 }
-.demo1 img {
+.demo img {
     width:300px;
 }
 td.prompt {
@@ -207,7 +207,7 @@ td.gif {
 	  <td style="padding-top:20px;"></td>
 	</tr>
       </table><br />
-      <table class="demo1" onmouseenter="stopMoving();" onmouseleave="beginMoving();">
+      <table class="demo" onmouseenter="stopMoving();" onmouseleave="beginMoving();">
 	<tr>
 	  <td style="width:5%;font-size:150%;" valign="top"><center><div style="height:300px;position:relative;"><a href="#" onclick="move(-1);" class="btn" style="position:absolute;top:147px;">&#9664;</a></div></center></td>
 	  <td style="width:90%;">
@@ -228,31 +228,31 @@ td.gif {
 		    <td colspan="3" class="prompt">"A photo of a <a href="#" id="dog_text_1" onclick="activate('dog', 1, 3);" class="active">dog with opened mouth</a> <a href="#" id="dog_text_2" onclick="activate('dog', 2, 3);">husky</a> <a href="#" id="dog_text_3" onclick="activate('dog', 3, 3);">tiger</a> standing on grass field"</td>
 		  </tr>
 		</table>
-		<table id="person_table" class="carousel_table" style="left:650px;">
+		<table id="cup_table" class="carousel_table" style="left:650px;">
 		  <tr><td><b>Input Image</b></td><td></td><td><b>Edited Image</b></td></tr>
 		  <tr>
-		    <td><img src="images/demo1/person.png" /></td>
+		    <td><img src="images/demo/cup.jpg" /></td>
 		    <td><center>&rightarrow;</center></td>
 		    <td><div class="img-stack">
-			<img src="images/demo1/person_A person giving a thumbs up.png" id="person_1" class="active" />
-			<img src="images/demo1/person_A person with crossed arms.png" id="person_2" />
-			<img src="images/demo1/person_A person with their hands on hips.png" id="person_3" />
+			<img src="images/demo/cup->cup_lion.webp" id="person_1" class="active" />
+			<img src="images/demo/cup->cup_matcha.webp" id="person_2" />
+			<img src="images/demo/cup->panda.webp" id="person_3" />
 			<div class="overlay" id="person_overlay"></div>
 		    </div></td>
 		  </tr>
 		  <tr>
-		    <td colspan="3" class="prompt">"A person <a href="#" id="person_text_1" onclick="activate('person', 1, 3);" class="active">giving the thumbs up</a> <a href="#" id="person_text_2" onclick="activate('person', 2, 3);">with crossed arms</a> <a href="#" id="person_text_3" onclick="activate('person', 3, 3);">with their hands on hips</a>."</td>
+		    <td colspan="3" class="prompt">"A photo of a cup of <a href="#" id="cup_text_1" onclick="activate('cup', 1, 3);" class="active">coffee with drawing of lion</a> <a href="#" id="cup_text_2" onclick="activate('cup', 2, 3);">matcha with drawing of tulip</a> <a href="#" id="cup_text_3" onclick="activate('cup', 3, 3);">coffee with drawing of panda</a>."</td>
 		  </tr>
 		</table>
 		<table id="cat_table" class="carousel_table" style="left:1300px;">
 		  <tr><td><b>Input Image</b></td><td></td><td><b>Edited Image</b></td></tr>
 		  <tr>
-		    <td><img src="images/demo1/cat1.png" /></td>
+		    <td><img src="images/demo/cat1.png" /></td>
 		    <td><center>&rightarrow;</center></td>
 		    <td><div class="img-stack">
-			<img src="images/demo1/cat1_A photo of a cat wearing a hat.png" id="cat_1" />
-			<img src="images/demo1/cat1_A photo of a cat wearing an apron.png" id="cat_2" />
-			<img src="images/demo1/cat1_A cat wearing a necklace.png" id="cat_3" class="active" />
+			<img src="images/demo/cat1_A photo of a cat wearing a hat.png" id="cat_1" />
+			<img src="images/demo/cat1_A photo of a cat wearing an apron.png" id="cat_2" />
+			<img src="images/demo/cat1_A cat wearing a necklace.png" id="cat_3" class="active" />
 			<div class="overlay" id="cat_overlay"></div>
 		    </div></td>
 		  </tr>
@@ -263,12 +263,12 @@ td.gif {
 		<table id="cake_table" class="carousel_table" style="left:1950px;">
 		  <tr><td><b>Input Image</b></td><td></td><td><b>Edited Image</b></td></tr>
 		  <tr>
-		    <td><img src="images/demo1/cake2.png" /></td>
+		    <td><img src="images/demo/cake2.png" /></td>
 		    <td><center>&rightarrow;</center></td>
 		    <td><div class="img-stack">
-			<img src="images/demo1/cake2_A photo of a strawberry cake.png" id="cake_1" />
-			<img src="images/demo1/cake2_A photo of a chocolate cake.png" id="cake_2" class="active" />
-			<img src="images/demo1/cake2_A photo of a pistachio cake.png" id="cake_3" />
+			<img src="images/demo/cake2_A photo of a strawberry cake.png" id="cake_1" />
+			<img src="images/demo/cake2_A photo of a chocolate cake.png" id="cake_2" class="active" />
+			<img src="images/demo/cake2_A photo of a pistachio cake.png" id="cake_3" />
 			<div class="overlay" id="cake_overlay"></div>
 		    </div></td>
 		  </tr>
@@ -279,12 +279,12 @@ td.gif {
 		<table id="horse_table" class="carousel_table" style="left:2600px;">
 		  <tr><td><b>Input Image</b></td><td></td><td><b>Edited Image</b></td></tr>
 		  <tr>
-		    <td><img src="images/demo1/white_horse.png" /></td>
+		    <td><img src="images/demo/white_horse.png" /></td>
 		    <td><center>&rightarrow;</center></td>
 		    <td><div class="img-stack">
-			<img src="images/demo1/white_horse_A cartoon of a horse.png" id="horse_1" class="active" />
-			<img src="images/demo1/white_horse_A brown horse in a grass field.png" id="horse_2" />
-			<img src="images/demo1/white_horse_A horse with a saddle.png" id="horse_3" />
+			<img src="images/demo/white_horse_A cartoon of a horse.png" id="horse_1" class="active" />
+			<img src="images/demo/white_horse_A brown horse in a grass field.png" id="horse_2" />
+			<img src="images/demo/white_horse_A horse with a saddle.png" id="horse_3" />
 			<div class="overlay" id="horse_overlay"></div>
 		    </div></td>
 		  </tr>
