@@ -351,15 +351,15 @@ td.gif {
     </div>
     <br />
     <div id="method" style="border-top:1px solid gray;">
-    <h2>Method: Two-stage training for One-step Inversion Network</h2>
-    <center>
-      <img src="images/method/main_diagram.pdf" style="width:80%;" />
-    </center><br />
+    <h2>Method (a): Two-stage training for One-step Inversion Network</h2>
     We introduce a two-stage training strategy to train a one-step inversion network that predicts the inverted noise to reconstruct a given source input image when passed through SBv2. This enables single-step reconstruction of any input images without further retraining.
+    <center>
+      <img src="images/method/main_diagram.png" style="width:80%;" />
+    </center><br />
     </div>
     <br />
     <div id="tedbench" style="border-top:1px solid gray;">
-    <h2>Method: Attention Rescaling for Mask-aware Editing (ARaM)</h2>
+    <h2>Method (b): Attention Rescaling for Mask-aware Editing (ARaM)</h2>
     During inference, we develop a self-guided editing mask, which is automatically extracted from our one-step inversion network to locate edited regions. Based on this mask, we proposed an attention-rescaling technique to perform disentangled editing and control the editing strength while preserving essential background elements
     <center>
         <img src="images/method/aram.png" style="width:80%;" />
