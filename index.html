@@ -258,15 +258,14 @@ td.gif {
                 <td><img src="images/demo/woman_dog_1.webp" /></td>
                 <td><center>&rightarrow;</center></td>
                 <td><div class="img-stack">
-                <img src="images/demo/woman->old_woman.webp" id="womandog_1" />
-                <img src="images/demo/woman->wear_glasses.webp" id="womandog_2" class="active" />
-                <img src="images/demo/woman->wear_hat.webp" id="womandog_3" />
-                <img src="images/demo/woman->hold_tiger.webp" id="womandog_4" />
+                <img src="images/demo/woman->wear_glasses.webp" id="womandog_1" class="active" />
+                <img src="images/demo/woman->wear_hat.webp" id="womandog_2" />
+                <img src="images/demo/woman->hold_tiger.webp" id="womandog_3" />
                 <div class="overlay" id="womandog_overlay"></div>
                 </div></td>
             </tr>
             <tr>
-                <td colspan="4" class="prompt">"<a href="#" id="womandog_text_1" onclick="activate('womandog', 1, 4);">Old</a> woman <a href="#" id="womandog_text_2" onclick="activate('womandog', 2, 4);" class="active">in sunglasses holding a dog</a> <a href="#" id="womandog_text_3" onclick="activate('womandog', 3, 4);">in hat holding a dog</a> <a href="#" id="womandog_text_4" onclick="activate('womandog', 4, 4);">holding a tiger</a>."</td>
+                <td colspan="3" class="prompt">" A woman <a href="#" id="womandog_text_1" onclick="activate('womandog', 1, 3);"> in glasses holding a dog</a> <a href="#" id="womandog_text_2" onclick="activate('womandog', 2, 3);" class="active">in hat holding a dog</a> <a href="#" id="womandog_text_3" onclick="activate('womandog', 3, 3);">holding a tiger</a>."</td>
             </tr>
         </table>
 		<table id="cup_table" class="carousel_table" style="left:1300;">
@@ -351,7 +350,7 @@ td.gif {
     </div>
     <br />
     <div id="method" style="border-top:1px solid gray;">
-    <h2>Method : Two-stage training for One-step Inversion Network</h2>
+    <h2>Method (a): Two-stage training for One-step Inversion Network</h2>
     We introduce a two-stage training strategy to train a one-step inversion network that predicts the inverted noise to reconstruct a given source input image when passed through SBv2. This enables single-step reconstruction of any input images without further retraining.
     <center>
       <img src="images/method/main_diagram.png" style="width:100%;" />
