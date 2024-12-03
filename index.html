@@ -1,145 +1,18 @@
 <html>
+
 <head>
-<title>SwiftEdit: Lightning Fast Text-guided Image Editing via One-step Diffusion</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@200&display=swap" rel="stylesheet"> 
-<style type="text/css">
-.content {
-    width:930px;
-    text-align: left;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 200;
-}
-h1 {
-    font-weight: 600;
-}
-table.authors {
-    width:90%;
-    text-align:center;
-}
-table.authors > tr > td, table.authors > tbody > tr > td {
-    width:25%;
-}
-.authors a, .lnk {
-    color:black;
-    text-decoration:underline;
-}
-.authors a:hover, .lnk:hover {
-    color:gray;
-    text-decoration:underline;
-}
-.btn {
-    color:black;
-    text-decoration:none;
-}
-.btn:hover {
-    color:gray;
-    text-decoration:none;
-}
-table.demo {
-    width:90%;
-    text-align:center;
-}
-.demo img {
-    width:300px;
-}
-td.prompt {
-    width:100%;
-    text-align:center;
-    font-family: monospace;
-    font-size:150%;
-}
-td.prompt a {
-    color:#ddd;
-    text-decoration:none;
-}
-td.prompt a:hover, td.prompt a.active {
-    color:black;
-    text-decoration:none;
-}
-.img-stack {
-    position:relative;
-    display: block;
-    width:300px;
-    height:300px;
-}
-.img-stack img {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 0;
-}
-.img-stack img.active {
-    z-index: 1;
-}
-.img-stack .overlay {
-    width: 300px;
-    height: 300px;
-    opacity: 0;
-    transition: opacity .2s;
-    z-index: 2;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    background: white;
-}
-.carousel {
-    position:relative;
-    width:650px;
-    height:385px;
-    overflow:hidden;
-}
-.carousel > table {
-    position:absolute;
-    top: 0px;
-    transition: left 1s;
-    width:650px;
-}
-.carousel_table td {
-    text-align:center;
-}
-.carousel_table td:nth-child(2) {
-    font-size:150%;
-}
-pre {
-    background-color:#eee;
-    border: 1px solid #999;
-    border-radius: 5px;
-    padding: 10px;
-white-space: break-spaces;
-width:80%;
-text-align:left;
-}
-td.gif {
-    width: 33%;
-    font-family: monospace;
-    font-size: 120%;
-}
-.dl_link {
-    display: inline-block;
-    padding-right: 6px;
-    padding-left: 6px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-}
-.dl_link, .dl_link td {
-    color: black;
-    text-decoration: none;
-    font-size: 120%;
-}
-.dl_link, .dl_link table {
-    border-radius: 5px;
-    background-color: none;
-}
-.dl_link:hover, .dl_link:hover * {
-    color: #404040 !important;
-    background-color: #d9d9d9 !important;
-}
-@media only screen and (max-width: 930px) {
-    .content { width:100% !important; }
-}
-</style>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>SwiftEdit</title>
+  <link href="assets/style.css" rel="stylesheet">
+  <script type="text/javascript" src="./assets/jquery.mlens-1.0.min.js"></script>
+  <script type="text/javascript" src="./assets/jquery.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+</head>
 <script type="text/javascript">
   var curr_idx = 0;
   var num_tables = 5;
@@ -190,46 +63,29 @@ td.gif {
       stopCounter++;
   }
 </script>
-</head>
 <body dir="ltr" onload="beginMoving();">
-<center><div class="content">
-    <center>
-      <h1>SwiftEdit: Lightning Fast Text-guided Image Editing via One-step Diffusion</h1>
-      <!-- <table class="authors">
-	<tr>
-	  <td><a href="https://scholar.google.com/citations?user=r9GRTJ4AAAAJ&hl=en">Trong-Tung Nguyen</a></td>
-	  <td><a href="https://quang-ngh.github.io/">Quang Nguyen</a></td>
-	  <td><a href="https://www.khoinguyen.org/">Khoi Nguyen</a></td>
-	  <td><a href="https://scholar.google.com/citations?hl=en&user=FYZ5ODQAAAAJ&view_op=list_works&sortby=pubdate">Anh Tran</a></td>
-      <td><a href="https://sites.google.com/view/cuongpham/home">Cuong Pham</a></td>
-	</tr><tr>
-	  <td colspan="1" width="100%" style="padding-top:20px;"><center><a href="https://www.vinai.io/"><img src="images/logo_vinai.png" style="height:25px;" /></a></center></td>
-	  <td style="padding-top:20px;"></td>
-	</tr>
-      </table> -->
-      <div class="is-size-5 publication-authors">
-        <span class="author-block">
-          <a target="_blank" rel="noopener noreferrer" href="https://scholar.google.com/citations?user=r9GRTJ4AAAAJ&hl=en" style="color: blue;">Trong-Tung Nguyen</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>
-        <span class="author-block">
-          <a target="_blank" rel="noopener noreferrer" href="https://quang-ngh.github.io/" style="color: blue;">Quang Nguyen</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>
-        <span class="author-block">
-          <a target="_blank" rel="noopener noreferrer" href="https://www.khoinguyen.org/" style="color: blue;">Khoi Nguyen</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>
-        <span class="author-block">
-          <a target="_blank" rel="noopener noreferrer" href="https://scholar.google.com/citations?hl=en&user=FYZ5ODQAAAAJ&view_op=list_works&sortby=pubdate" style="color: blue;">Anh Tran</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>
-        <span class="author-block">
-          <a target="_blank" rel="noopener noreferrer" href="https://sites.google.com/view/cuongpham/home" style="color: blue;">Cuong Pham</a><sup>1,2</sup>&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>
-      </div>
-      <div class="is-size-5 publication-authors">
-        <span class="author-block"><sup>1</sup>VinAI Research, Vietnam</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </div>
-      <div class="is-size-5 publication-authors">
-        <span class="author-block"><sup>2</sup>Posts & Telecommunications Inst. of Tech., Vietnam</span>
-      </div>
+  <div class="content">
+    <h1><strong>SwiftEdit: Lightning Fast Text-guided Image Editing via One-step Diffusion</strong></h1>
+    <p id="authors"><a class="hover-underline-animation-blue" href="https://github.com/Luvata"
+        style="color: #224b8d; text-decoration: none;">Trong-Tung Nguyen<sup>1</sup></a>
+      <a class="hover-underline-animation-blue" href="https://hao-pt.github.io/"
+        style="color: #224b8d; text-decoration: none;">Quang Nguyen<sup>1</sup></a>
+      <a class="hover-underline-animation-blue" href="https://thuanz123.github.io/"
+        style="color: #224b8d; text-decoration: none;">Khoi Nguyen<sup>1</sup></a>
+      <a class="hover-underline-animation-blue" href="https://quandao10.github.io/"
+        style="color: #224b8d; text-decoration: none;">Anh Tran<sup>1</sup></a>
+      <a class="hover-underline-animation-blue" href="https://ngoctnq.github.io/"
+        style="color: #224b8d; text-decoration: none;">Cuong Pham<sup>1,2</sup></a>
+      <br>
+      <br>
+      <span style="font-size: 24px;">
+        <a class="hover-underline-animation-black" href="https://www.vinai.io/"
+          style="color: black; text-decoration: none;"><sup>1</sup>VinAI Research</a>
+        <a class="hover-underline-animation-black" href="https://www.vanderbilt.edu/"
+          style="color: black; text-decoration: none;"><sup>2</sup>Posts & Telecommunications Inst. of Tech., Vietnam</a>
+        <br><br>
+      </span>
+    </p>
     <br />
       <table class="demo" onmouseenter="stopMoving();" onmouseleave="beginMoving();">
 	<tr>
@@ -324,104 +180,347 @@ td.gif {
 	  </td>
 	  <td style="width:5%;font-size:150%;" valign="top"><center><div style="height:300px;position:relative;"><a href="#" onclick="move(1);" class="btn" style="position:absolute;top:147px;">&#9658;</a></div></center></td>
 	</tr>
-      </table>
-      <span style="font-size:110%;">SwiftEdit establishes a new efficiency standard in text-guided image editing, delivering instant, realistic, high-quality editing results in just <b>0.23 seconds-at least 50 times</b> faster than traditional multi-step editing methods.</span><br /><br />
-      <b><a href="https://swift-edit.github.io/" class="lnk">arXiv</a></b>&nbsp;&nbsp;|&nbsp;&nbsp;<b><a href="https://swift-edit.github.io/" class="lnk">PDF</a></b>
-    </center>
-    <br />
-    <div id="abstract" style="border-top:1px solid gray;">
-    <h2>Abstract</h2>
+    <br>
+    <font size="+2">
+      <p style="text-align: center;">
+        <a class="btn btn-primary rounded-pill" href="https://arxiv.org/abs/2303.15433" role="button"
+          style="color: black;background-color: black;">
+          <span class="icon"><i class="ai ai-arxiv"></i></span>
+          &nbsp;
+          <span>Paper</span>
+        </a> &emsp;
+        <a class="btn btn-primary rounded-pill" href="https://github.com/VinAIResearch/Anti-DreamBooth.git"
+          role="button" style="color: black;background-color: black;">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+          &nbsp;
+          <span>Code</span>
+        </a> &emsp;
+        <a class="btn btn-primary rounded-pill" href="Anti_DreamBooth_files/bibtex.txt" role="button"
+          style="color: black;background-color: black;">
+          <span class="icon">
+            <i class="fa-solid fa-quote-right"></i>
+          </span>
+          &nbsp;
+          <span>BibTex</span>
+        </a> &emsp;
+
+	<!-- (<font color="#C70039">new!</font>) -->
+
+  <img class="new-icon" src="./Anti_DreamBooth_files/new_icon.png" style="width:5%;">
+	<a class="btn btn-primary rounded-pill" href="#robustness" role="button"
+          style="color: black;background-color: black;">
+          <span class="icon">
+            <i class="fa-solid fa-star"></i>
+          </span>
+          &nbsp;
+          <span>Robustness</span>
+        </a>
+      </p>
+    </font>
+  </div>
+  <!-- <div class="content">
+    <h2> &#11088; News</h2>
+    <i class="fa-regular fa-sparkles" style="color: #f9bd1a;"></i>
+    <ul>
+      <li>Apr 01, 2023&emsp;&emsp;&emsp;&emsp;&emsp;Add Robustness Evaluation section.</li>
+    </ul>
+    
+  </div> -->
+  <div class="content">
+    <h2 style="text-align:center;">Abstract</h2>
+    <p>Text-to-image diffusion models are nothing but a revolution, allowing anyone, even without design skills, to
+      create realistic images from simple text inputs. With powerful personalization tools like DreamBooth, they can
+      generate images of a specific person just by learning from his/her few reference images. However, when misused,
+      such a powerful and convenient tool can produce fake news or disturbing content targeting any individual victim,
+      posing a severe negative social impact. In this paper, we explore a defense system called Anti-DreamBooth against
+      such malicious use of DreamBooth. The system aims to add subtle noise perturbation to each user's image before
+      publishing in order to disrupt the generation quality of any DreamBooth model trained on these perturbed images.
+      We investigate a wide range of algorithms for perturbation optimization and extensively evaluate them on two
+      facial datasets over various text-to-image model versions. Despite the complicated formulation of DreamBooth and
+      Diffusion-based text-to-image models, our methods effectively defend users from the malicious use of those models.
+      Their effectiveness withstands even adverse conditions, such as model or prompt/term mismatching between training
+      and testing.</p>
+  </div>
+  <div class="content">
+    <h2>Motivation</h2>
+    <p> By finetuning a text-to-image model using DreamBooth, a malicious attacker is able to generate different images
+      of a specific person/concept (denoted as <span style="color: red">sks</span>) in different contexts, for a purpose
+      of (1) creating highly-sensitive content,
+      (2) stealing artistic style, or (3) spreading misinformation. Hence, our motivation is to prevent such scenarios
+      by processing the subject's images
+      before online release.</p>
+    <br>
+    <img class="summary-img" src="./Anti_DreamBooth_files/motivation_new.svg" style="width:95%;"> <br>
+    *The black censor is manually added. <i>To avoid causing unwanted negative impacts on real people, (1) is generated
+      from a DreamBooth model trained on images of a virtual character collected from <a
+        class="hover-underline-animation" href="https://twitter.com/theaiidols"
+        style="color: #EA48CA; text-decoration: none;">Ai-idols Studio</a>.</i>
+  </div>
+  <div class="content">
+    <h2>Defense Scenario</h2>
+    <p>Given a few images of a subject collected online, a malicious attacker will finetune
+      the DreamBooth model to create harmful content targeting an
+      individual. Hence, before users release their images online, we protect
+      these photos using our method Anti-DreamBooth. The entire attack-defense flow is described below: </p>
+    <p> (a) We optimize imperceptible noises added to the original clean
+      images such that the perturbed images are nearly identical to the clean
+      ones and any DreamBooth models finetuned on these images have poor
+      quality.</p>
+    <br>
+    <img class="summary-img" src="./Anti_DreamBooth_files/perturbation_training.svg" style="width:80%;"> <br>
+    <p> (b) The attacker collects the perturbed images to fine-tune a text-to-image model following the DreamBooth
+      algorithm. Specifically, he fine-tunes the model with these images
+      paired with an instance prompt containing a unique identifier (e.g., "A
+      photo of <em>sks</em> person”); in parallel, a class-specific prior preservation loss is applied using a class
+      prompt (e.g., "A photo of a person”).
     <p>
-        Recent advances in text-guided image editing enable users to perform image edits through simple text inputs, leveraging the extensive priors of multi-step diffusion-based text-to-image models. However, these methods often fall short of the speed demands required for real-world and on-device applications due to the costly multi-step inversion and sampling process involved. In response to this, we introduce SwiftEdit, a simple yet highly efficient editing tool that achieve instant text-guided image editing (<b>in 0.23s</b>). The advancement of SwiftEdit lies in its two novel contributions: a one-step inversion framework that enables one-step image reconstruction via inversion and a mask-guided editing technique with our proposed attention rescaling mechanism to perform localized image editing. Extensive experiments are provided to demonstrate the effectiveness and efficiency of SwiftEdit. In particular, SwiftEdit enables instant text-guided image editing, which is extremely faster than previous multi-step methods (at least <b>50 times faster</b>) while maintain a competitive performance in editing results.
-    </p>
-    </div>
-    <div id="video_demo" style="border-top:1px solid gray;">
-    <h2>Video Demonstration</h2>
-        <p>
-            SwiftEdit is a user-friendly, lightning-fast editing tool that enables instant edits through simple and flexible prompts, delivering highly desirable results. Watch the video to learn more!
-        </p>
-        <!-- <div class="item item-steve">
-            <video poster="" id="steve" autoplay controls muted loop playsinline width="80%">
-                <source src="images/demo/video_demo.mp4"
-                        type="video/mp4"> 
-            </video>
-        </div> -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <div class="publication-video">
-              <iframe src="https://www.youtube.com/embed/nNT5wC5FeZU"
-                      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
+      <img class="summary-img" src="./Anti_DreamBooth_files/fine_tuning.svg" style="width:80%;"> <br>
+    <p> (c) Using the fooled DreamBooth model, the attacker can only
+      generate noisy and corrupted images of the subject regardless of
+      different sentences to synthesize the subjects. Our method can even
+      generalize to prompts unseen during perturbation training.
+    <p>
+      <img class="summary-img" src="./Anti_DreamBooth_files/inference.svg" style="width:80%;"> <br>
+  </div>
+  <div class="content">
+    <h2>Controlled Settings</h2>
+    <p>Results for protecting instances in a convenient setting. Here, we
+      assume to have prior knowledge about the pretrained text-to-image
+      generator, training term (e.g., “sks”), and training prompt the attacker
+      will use. We display the conditioning prompts above each image.</p>
+    <div class="container" align="center">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="./Anti_DreamBooth_files/convenient_vgg_results.png" style="width:100%;">
+          </div>
+          <div class="swiper-slide"><img src="./Anti_DreamBooth_files/convenient_vgg_results_1.png" style="width:100%;">
+          </div>
+          <div class="swiper-slide"><img src="./Anti_DreamBooth_files/convenient_vgg_results_2.png" style="width:100%;">
           </div>
         </div>
+        <br>
+        <div class="swiper-pagination"></div>
+      </div>
     </div>
-    <br />
-    <div id="examples" style="border-top:1px solid gray;">
-    <h2>Additional Examples</h2>
-    <h3>Facial Identity and Expression Editing via simple text</h3>
-    <center>
-      <img src="images/demo/facial_edit.png" style="width:100%;" /><br /><br />
-      <!-- <table style="width:90%;text-align:center;">
-	<tr>
-	  <td class="gif"><img src="images/gifs/wooden_chair.gif" style="width:80%;" /><br />"A wooden chair"</td>
-	  <td class="gif"><img src="images/gifs/colorful_tulips.gif" style="width:80%;" /><br />"A vase of colorful tulips"</td>
-	  <td class="gif"><img src="images/gifs/wedding_womandog.gif" style="width:80%;" /><br />"A white wedding womandog"</td>
-	</tr>
-      </table> -->
-    </center>
-    <h3>Comparison with other methods on PieBench benchmark</h3>
-    <center>
-      <img src="images/demo/main_qual.png" style="width:100%;" /><br /><br />
-    </center>
-    <center>
-      <img src="images/demo/supp_qual1.png" style="width:100%;" /><br /><br />
-    </center>
-    <center>
-      <img src="images/demo/supp_qual2.png" style="width:100%;" /><br /><br />
-    </center>
-    <center>
-      <img src="images/demo/supp_qual3.png" style="width:100%;" /><br /><br />
-    </center>
+  </div>
+
+  <div class="content">
+    <h2>Sensitive-content Mitigation</h2>
+    <p>
+      As described in the motivation section, we present our approach to defending against the presence of sensitive
+      content that specifically targets women.
+      As depicted in the figure below, such contents are significantly distorted with noticeable artifacts, which are
+      induced by our method.
+    </p>
+    <figure>
+      <img src="./Anti_DreamBooth_files/sdchar_sensitive.png" style="width:100%;">
+      <br><br>
+      <figcaption>
+        <span class="caption">*The black censor is manually added.</span>
+        <i class="photo-credit">To avoid causing unwanted negative impacts on real people, we use images of a virtual
+          character collected from <a class="hover-underline-animation" href="https://twitter.com/theaiidols"
+            style="color: #EA48CA; text-decoration: none;">Ai-idols Studio</a>.</i>
+      </figcaption>
+    </figure>
+  </div>
+  <div class="content">
+    <h2>Art Style Protection</h2>
+    <p>Our method has also proven effective in preventing the imitation of famous artworks by well-known artists such as
+      Paul Jacoulet and Félix Vallotton, further highlighting its benefits.</p>
+    <div class="container" align="center">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="./Anti_DreamBooth_files/artist-Felix-Vallotton-compare.jpg"
+              style="width:100%;"></div>
+          <div class="swiper-slide"><img src="./Anti_DreamBooth_files/artist-Paul-Jacoulet-compare.jpg"
+              style="width:100%;"></div>
+          <div class="swiper-slide"><img src="./Anti_DreamBooth_files/artist-Utagawa-Kuniyoshi-compare.jpg"
+              style="width:100%;"></div>
+        </div>
+        <br>
+        <div class="swiper-pagination"></div>
+      </div>
     </div>
-    <br />
-    <div id="method" style="border-top:1px solid gray;">
-    <h2>Method (a): Two-stage training for One-step Inversion Network</h2>
-    We introduce a two-stage training strategy to train a one-step inversion network that predicts the inverted noise to reconstruct a given source input image when passed through SBv2. This enables single-step reconstruction of any input images without further retraining.
-    <center>
-      <img src="images/method/main_diagram.png" style="width:100%;" />
-    </center><br />
+    <details>
+      <summary>Prompts</summary>
+      <div>(1) A portrait in the style of <i><b>sks</b></i></div>
+      <div>(2) A painting of eiffel tower in the style of <i><b>sks</b></i></div>
+      <div>(3) A still life painting in the style of <i><b>sks</b></i></div>
+    </details>
+    <i>Source: <a class="hover-underline-animation" href="https://www.wikiart.org/"
+        style="color: #EA48CA; text-decoration: none;">wikiart.org</a></i>.
+  </div>
+  <div class="content">
+    <h2>Misinformation Mitigation</h2>
+    <p>In response to the recent spread of <a class="hover-underline-animation"
+        href="https://www.bbc.com/news/world-us-canada-65069316" style="color: #EA48CA; text-decoration: none;">false
+        news about Donald Trump's alleged arrest by the police</a>, we demonstrate the effectiveness of our method in
+      preventing the distribution of misinformation.</p>
+    <br>
+    <img class="summary-img" src="./Anti_DreamBooth_files/trump_defense.png" style="width:100%;"> <br>
+    *Here we assume the subject to defend is not included in the pretrained text-to-image models, and the attacker has
+    to use DreamBooth instead of using the victim's name directly.
+  </div>
+  <div class="content">
+    <h2>Adverse Settings</h2>
+    <p>Results for protecting instances in adverse settings. For example, we don't have prior knowledge about the
+      pretrained text-to-image generator will be used by the attacker, so we use an ensemble of three versions of Stable
+      Diffusion (v1.4, v1.5, and v2.1) to train the adversarial noise and then validate on DreamBooth models which are
+      finetuned on Stable Diffusion v2.1 and v2.0. We test with two random subjects and denote them in green and red,
+      respectively.</p>
+    <img class="summary-img" src="./Anti_DreamBooth_files/ensemble.png" style="width:100%;">
+    <br>
+    <p>Another possible case is that we may not have prior knowledge about the training term or prompt so we examine the
+      transferability of the learned adversarial noise when there is a change in the training terms/promtps.</p>
+    <img class="summary-img" src="./Anti_DreamBooth_files/cross_terms_and_prompts.png" style="width:100%;">
+    <br>
+    <p> In the first scenario, the training term is changed from “sks” to “t@t”. In the second scenario, the training
+      prompt is replaced with “a DSLR portrait of <em>sks</em> person” instead of “a photo of <em>sks</em> person”.
+      Here, S<sup>*</sup> is “t@t” for term mismatching and “sks” for prompt mismatching.
+    <p>
+  </div>
+  <div class="content">
+    <h2>Real-world Settings</h2>
+    <p>Our proposed defense not only works in laboratory settings but also in real-world scenarios, as it successfully
+      disrupts the personalized generation outputs of a black-box and commercialized AI service named <a
+        class="hover-underline-animation" href="https://www.astria.ai/"
+        style="color: #EA48CA; text-decoration: none">Astria</a>. First, we test our method's capability on Astria's
+      default configuration: Stable Diffusion version 1.5 with face detection enabled.</p>
+    <br>
+    <img class="summary-img" src="./Anti_DreamBooth_files/astria1.png" style="width:100%;"> <br>
+    <p>With the increasing availability of public text-to-image models, it is not always the case that the attacker uses
+      Stable Diffusion, but he
+      may opt for a different pretrained model. Here, we test another Astria setting, which is Protogen version 3.4
+      with Prism and
+      face detection enabled.</p>
+    <br>
+    <img class="summary-img" src="./Anti_DreamBooth_files/astria2.png" style="width:100%;"> <br>
+    <details>
+      <summary>Prompts</summary>
+      <div>(1) portrait of <i><b>sks</b></i> person portrait wearing fantastic Hand-dyed cotton clothes, embellished
+        beaded feather decorative fringe knots, colorful pigtail, subtropical flowers and plants, symmetrical face,
+        intricate, elegant, highly detailed, 8k, digital painting, trending on pinterest, harper's bazaar, concept art,
+        sharp focus, illustration, by artgerm, Tom Bagshaw, Lawrence Alma-Tadema, greg rutkowski, alphonse Mucha person
+        portrait wearing fantastic Hand-dyed cotton clothes, embellished beaded feather decorative fringe knots,
+        colorful pigtail, subtropical flowers and plants, symmetrical face, intricate, elegant, highly detailed, 8k,
+        digital painting, trending on pinterest, harper's bazaar, concept art, sharp focus, illustration, by artgerm,
+        Tom Bagshaw, Lawrence Alma-Tadema, greg rutkowski, alphonse Mucha</div>
+      <div>(2) close up of face of <i><b>sks</b></i> person fashion model in white feather clothes, official balmain
+        editorial, dramatic lighting highly detailed</div>
+      <div>(3) portrait of <i><b>sks</b></i> person prince :: by Martine Johanna and Simon Stålenhag and Chie Yoshii and
+        Casey Weldon and wlop :: ornate, dynamic, particulate, rich colors, intricate, elegant, highly detailed,
+        centered, artstation, smooth, sharp focus, octane render, 3d</div>
+    </details>
+    <p>As can be seen, our method significantly reduces the quality of the generated images in various complex prompts
+      and on both target models. This highlights the robustness of our approach, which can defend against these services
+      without requiring knowledge of their underlying configurations.</p>
+  </div>
+  <div class="content">
+    <h2>Uncontrolled Settings</h2>
+    <p>In case the malicious attacker may get in hand some clean images of the target subject and mix them with the
+      perturbed images for DreamBooth training, our Anti-DreamBooth still can protect users unless there are too many
+      clean examples. As shown below, our defense is still quite effective when half of the images are perturbed, but
+      its effectiveness reduces when more clean images are introduced.</p>
+    <br>
+    <img class="summary-img" src="./Anti_DreamBooth_files/uncontrolled.png" style="width:100%;"> <br>
+  </div>
+
+  <div class="content" id="robustness">
+    <h2>Robustness Evaluation</h2>
+
+    <p>To evaluate the robustness of the proposed Anti-DreamBooth, we conducted extensive experiments using various simple image processing techniques. <i>Swipe left and right the image below to see more in detail.</i></p>
+    
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <p>Firstly, we examine a scenario where the malicious attacker applies  <a class="hover-underline-animation"
+            href="https://en.wikipedia.org/wiki/Gaussian_blur" style="color: #EA48CA; text-decoration: none;">Gaussian
+            blur</a> to perturbed images before DreamBooth finetuning. Evidently, the
+            overall quality of the generated images remains low, with blurry texture and unnatural backgrounds. </p>
+	  <img src="./Anti_DreamBooth_files/robustness_gaussian_blur_compact.png" style="width:100%;">
+	</div>
+	<div class="swiper-slide">
+	  <p>Not only blur, but our method is also resilient to  <a class="hover-underline-animation"
+            href="https://en.wikipedia.org/wiki/JPEG" style="color: #EA48CA; text-decoration: none;">JPEG
+            compression</a>, a widely-used image compression algorithm. Noticeable artifacts
+            can be seen in the generated images due to the degradation from either our method or the compression itself.</p>
+          <img src="./Anti_DreamBooth_files/robustness_jpeg_compression_compact.png" style="width:100%;">
+	</div>
+	<div class="swiper-slide">
+	  <p>Last but not least, we tested our method against the <a class="hover-underline-animation"
+            href="https://github.com/lllyasviel/AdverseCleaner" style="color: #EA48CA; text-decoration: none;">Adverse
+            Cleaner</a> which is, as its name suggests, a library for cleaning adversarial noise. Notably, our defense method demonstrated
+            its robustness even against the smoothing effect of this sophisticated denoiser.</p>
+          <img src="./Anti_DreamBooth_files/robustness_adverse_cleaner_compact.png" style="width:100%;">
+	</div>
+      </div>
+      <br>
+      <div class="swiper-pagination"></div>
     </div>
-    <br />
-    <div id="tedbench" style="border-top:1px solid gray;">
-    <h2>Method (b): Attention Rescaling for Mask-aware Editing (ARaM)</h2>
-    During inference, we develop a self-guided editing mask, which is automatically extracted from our one-step inversion network to locate edited regions. Based on this mask, we proposed an attention-rescaling technique to perform disentangled editing and control the editing strength while preserving essential background elements
-    <center>
-        <img src="images/method/aram.png" style="width:100%;" />
-    </center>
-    </div>  
-    <br />
-    <div id="paper" style="border-top:1px solid gray;">
-    <h2>Paper</h2>
-    <table><tr>
-	<td valign="middle"><img src="images/paper.png" style="width:200px;" /></td>
-	<!-- <td valign="top">
-	  <b>"Imagic: Text-Based Real Image Editing with Diffusion Models"</b>,<br /><br/>
-	  Bahjat Kawar<sup>*</sup>, Shiran Zada<sup>*</sup>, Oran Lang, Omer Tov, Huiwen Chang, Tali Dekel, Inbar Mosseri, and Michal Irani.<br /><br />
-      Conference on Computer Vision and Pattern Recognition (CVPR) 2023<br /><br />
-	  <b>[</b><a href="https://arxiv.org/pdf/2210.09276.pdf" class="lnk">PDF</a><b>]</b>
-	</td> -->
-    </tr></table>
-    </div><br />
-    <div id="bibtex" style="border-top:1px solid gray;">
-    <h2>BibTeX</h2>
-    <!-- <center><pre><code>@inproceedings{kawar2023imagic,
-      title={Imagic: Text-Based Real Image Editing with Diffusion Models},
-      author={Kawar, Bahjat and Zada, Shiran and Lang, Oran and Tov, Omer and Chang, Huiwen and Dekel, Tali and Mosseri, Inbar and Irani, Michal},
-      booktitle={Conference on Computer Vision and Pattern Recognition 2023},
-      year={2023}
-}</code></pre></center> -->
-    </div>
-</div></center>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <p>
+      Even though the above results indicate that our defense scheme withstands basic image processing techniques, we acknowledge that these methods do not represent all potential attacks to bypass our protection. 
+      Thus, we plan to explore additional algorithms to improve our defense robustness in future works further, as mentioned in the Conclusions section of our paper.
+    </p>
+
+  </div>
+
+  <div class="content">
+    <h2>BibTex</h2>
+    <code> @InProceedings{le_etal2023antidreambooth,<br>
+  &nbsp;&nbsp;title={Anti-DreamBooth: Protecting Users from Personalized Text-to-Image Synthesis},<br>
+  &nbsp;&nbsp;author={Thanh Van Le, Hao Phung, Thuan Hoang Nguyen, Quan Dao, Ngoc Tran and Anh Tran},<br>
+  &nbsp;&nbsp;booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},<br>
+  &nbsp;&nbsp;year={2023}<br>
+  } </code>
+  </div>
+  <div class="content" id="acknowledgements">
+    <p><strong>Acknowledgements</strong>:
+      We thank Nataniel Ruiz, Yuanzhen Li, Varun Jampani, Yael Pritch, Michael Rubinstein, and Kfir Aberman for the
+      wonderful work DreamBooth and its <a class="hover-underline-animation" href="https://dreambooth.github.io/"
+        style="color: #EA48CA; text-decoration: none">project page</a>. Finally, a special "thank you" to Stability AI,
+      RunwayML and CompVis for publishing different version of pretrained Stable Diffusion models.
+    </p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <script>
+    const sliders = document.getElementsByClassName('swiper');
+    const swiper0 = new Swiper(sliders[0], {
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+    
+    const swiper1 = new Swiper(sliders[1], {
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+    
+    const swiper2 = new Swiper(sliders[2], {
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  </script>
+
 </body>
+
 </html>

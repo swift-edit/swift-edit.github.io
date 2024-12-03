@@ -1,0 +1,427 @@
+<html>
+<head>
+<title>SwiftEdit: Lightning Fast Text-guided Image Editing via One-step Diffusion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@200&display=swap" rel="stylesheet"> 
+<style type="text/css">
+.content {
+    width:930px;
+    text-align: left;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 200;
+}
+h1 {
+    font-weight: 600;
+}
+table.authors {
+    width:90%;
+    text-align:center;
+}
+table.authors > tr > td, table.authors > tbody > tr > td {
+    width:25%;
+}
+.authors a, .lnk {
+    color:black;
+    text-decoration:underline;
+}
+.authors a:hover, .lnk:hover {
+    color:gray;
+    text-decoration:underline;
+}
+.btn {
+    color:black;
+    text-decoration:none;
+}
+.btn:hover {
+    color:gray;
+    text-decoration:none;
+}
+table.demo {
+    width:90%;
+    text-align:center;
+}
+.demo img {
+    width:300px;
+}
+td.prompt {
+    width:100%;
+    text-align:center;
+    font-family: monospace;
+    font-size:150%;
+}
+td.prompt a {
+    color:#ddd;
+    text-decoration:none;
+}
+td.prompt a:hover, td.prompt a.active {
+    color:black;
+    text-decoration:none;
+}
+.img-stack {
+    position:relative;
+    display: block;
+    width:300px;
+    height:300px;
+}
+.img-stack img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+}
+.img-stack img.active {
+    z-index: 1;
+}
+.img-stack .overlay {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    transition: opacity .2s;
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: white;
+}
+.carousel {
+    position:relative;
+    width:650px;
+    height:385px;
+    overflow:hidden;
+}
+.carousel > table {
+    position:absolute;
+    top: 0px;
+    transition: left 1s;
+    width:650px;
+}
+.carousel_table td {
+    text-align:center;
+}
+.carousel_table td:nth-child(2) {
+    font-size:150%;
+}
+pre {
+    background-color:#eee;
+    border: 1px solid #999;
+    border-radius: 5px;
+    padding: 10px;
+white-space: break-spaces;
+width:80%;
+text-align:left;
+}
+td.gif {
+    width: 33%;
+    font-family: monospace;
+    font-size: 120%;
+}
+.dl_link {
+    display: inline-block;
+    padding-right: 6px;
+    padding-left: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.dl_link, .dl_link td {
+    color: black;
+    text-decoration: none;
+    font-size: 120%;
+}
+.dl_link, .dl_link table {
+    border-radius: 5px;
+    background-color: none;
+}
+.dl_link:hover, .dl_link:hover * {
+    color: #404040 !important;
+    background-color: #d9d9d9 !important;
+}
+@media only screen and (max-width: 930px) {
+    .content { width:100% !important; }
+}
+</style>
+<script type="text/javascript">
+  var curr_idx = 0;
+  var num_tables = 5;
+  function move(direction) {
+      if (curr_idx == 0 && direction < 0) {
+	  move(num_tables - 1);
+	  return;
+      }
+      if (curr_idx == num_tables - 1 && direction > 0) {
+	  move(-1 * (num_tables - 1));
+	  return;
+      }
+      tables = document.getElementsByClassName("carousel_table");
+      for(var i = 0; i < tables.length; i++) {
+	  tables[i].style.left = (parseInt(tables[i].style.left.substring(0, tables[i].style.left.length - 2)) - direction * 650).toString() + "px";
+      }
+      curr_idx += direction;
+  }
+  function hideOverlay(classname) {
+      document.getElementById(classname + "_overlay").style.opacity = "0";
+  }
+  function activate(classname, idx, max) {
+      document.getElementById(classname + "_overlay").style.opacity = "1";
+      setTimeout(function() {
+	  for(var i = 1; i <= max; i++) {
+	      document.getElementById(classname + "_" + i.toString()).className = "";
+	      document.getElementById(classname + "_text_" + i.toString()).className = "";
+	  }
+	  document.getElementById(classname + "_" + idx.toString()).className = "active";
+	  document.getElementById(classname + "_text_" + idx.toString()).className = "active";
+	  setTimeout(hideOverlay, 200, classname);
+      }, 200);
+  }
+  var moving = true;
+  var stopCounter = 0;
+  function autoMove(currCounter) {
+      if(moving && currCounter >= stopCounter) {
+	  move(1);
+          setTimeout(autoMove, 5000, stopCounter);
+      }
+  }
+  function beginMoving() {
+      moving = true;
+      setTimeout(autoMove, 5000, stopCounter);
+  }
+  function stopMoving() {
+      moving = false;
+      stopCounter++;
+  }
+</script>
+</head>
+<body dir="ltr" onload="beginMoving();">
+<center><div class="content">
+    <center>
+      <h1>SwiftEdit: Lightning Fast Text-guided Image Editing via One-step Diffusion</h1>
+      <!-- <table class="authors">
+	<tr>
+	  <td><a href="https://scholar.google.com/citations?user=r9GRTJ4AAAAJ&hl=en">Trong-Tung Nguyen</a></td>
+	  <td><a href="https://quang-ngh.github.io/">Quang Nguyen</a></td>
+	  <td><a href="https://www.khoinguyen.org/">Khoi Nguyen</a></td>
+	  <td><a href="https://scholar.google.com/citations?hl=en&user=FYZ5ODQAAAAJ&view_op=list_works&sortby=pubdate">Anh Tran</a></td>
+      <td><a href="https://sites.google.com/view/cuongpham/home">Cuong Pham</a></td>
+	</tr><tr>
+	  <td colspan="1" width="100%" style="padding-top:20px;"><center><a href="https://www.vinai.io/"><img src="images/logo_vinai.png" style="height:25px;" /></a></center></td>
+	  <td style="padding-top:20px;"></td>
+	</tr>
+      </table> -->
+      <div class="is-size-5 publication-authors">
+        <span class="author-block">
+          <a target="_blank" rel="noopener noreferrer" href="https://scholar.google.com/citations?user=r9GRTJ4AAAAJ&hl=en" style="color: blue;">Trong-Tung Nguyen</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <span class="author-block">
+          <a target="_blank" rel="noopener noreferrer" href="https://quang-ngh.github.io/" style="color: blue;">Quang Nguyen</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <span class="author-block">
+          <a target="_blank" rel="noopener noreferrer" href="https://www.khoinguyen.org/" style="color: blue;">Khoi Nguyen</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <span class="author-block">
+          <a target="_blank" rel="noopener noreferrer" href="https://scholar.google.com/citations?hl=en&user=FYZ5ODQAAAAJ&view_op=list_works&sortby=pubdate" style="color: blue;">Anh Tran</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <span class="author-block">
+          <a target="_blank" rel="noopener noreferrer" href="https://sites.google.com/view/cuongpham/home" style="color: blue;">Cuong Pham</a><sup>1,2</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+      </div>
+      <div class="is-size-5 publication-authors">
+        <span class="author-block"><sup>1</sup>VinAI Research, Vietnam</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+      <div class="is-size-5 publication-authors">
+        <span class="author-block"><sup>2</sup>Posts & Telecommunications Inst. of Tech., Vietnam</span>
+      </div>
+    <br />
+      <table class="demo" onmouseenter="stopMoving();" onmouseleave="beginMoving();">
+	<tr>
+	  <td style="width:5%;font-size:150%;" valign="top"><center><div style="height:300px;position:relative;"><a href="#" onclick="move(-1);" class="btn" style="position:absolute;top:147px;">&#9664;</a></div></center></td>
+	  <td style="width:90%;">
+	    <center><div class="carousel">
+		<table id="dog_table" class="carousel_table" style="left:0px;">
+		  <tr><td><b>Input Image</b></td><td></td><td><b>Edited Image</b></td></tr>
+		  <tr>
+		    <td><img src="images/demo/dog2_standing.png" /></td>
+		    <td><center>&rightarrow;</center></td>
+		    <td><div class="img-stack">
+			<img src="images/demo/dog->opened mouth.webp" id="dog_1" class="active" />
+			<img src="images/demo/dog->husky.webp" id="dog_2" />
+			<img src="images/demo/dog->tiger.webp" id="dog_3" />
+			<div class="overlay" id="dog_overlay"></div>
+		    </div></td>
+		  </tr>
+		  <tr>
+		    <td colspan="3" class="prompt">"A photo of a <a href="#" id="dog_text_1" onclick="activate('dog', 1, 3);" class="active">dog with opened mouth</a> <a href="#" id="dog_text_2" onclick="activate('dog', 2, 3);">husky</a> <a href="#" id="dog_text_3" onclick="activate('dog', 3, 3);">tiger</a> standing on grass field"</td>
+		  </tr>
+		</table>
+        <table id="womandog_table" class="carousel_table" style="left:650;">
+            <tr><td><b>Input Image</b></td><td></td><td><b>Edited Image</b></td></tr>
+            <tr>
+                <td><img src="images/demo/woman_dog_1.webp" /></td>
+                <td><center>&rightarrow;</center></td>
+                <td><div class="img-stack">
+                <img src="images/demo/woman->wear_glasses.webp" id="womandog_1" class="active" />
+                <img src="images/demo/woman->wear_hat.webp" id="womandog_2" />
+                <img src="images/demo/woman->hold_tiger.webp" id="womandog_3" />
+                <div class="overlay" id="womandog_overlay"></div>
+                </div></td>
+            </tr>
+            <tr>
+                <td colspan="3" class="prompt">" A woman <a href="#" id="womandog_text_1" onclick="activate('womandog', 1, 3);" class="active"> in glasses holding a dog</a> <a href="#" id="womandog_text_2" onclick="activate('womandog', 2, 3);">in hat holding a dog</a> <a href="#" id="womandog_text_3" onclick="activate('womandog', 3, 3);">holding a tiger</a>."</td>
+            </tr>
+        </table>
+		<table id="cup_table" class="carousel_table" style="left:1300;">
+		  <tr><td><b>Input Image</b></td><td></td><td><b>Edited Image</b></td></tr>
+		  <tr>
+		    <td><img src="images/demo/cup.jpg" /></td>
+		    <td><center>&rightarrow;</center></td>
+		    <td><div class="img-stack">
+			<img src="images/demo/cup->cup_lion.webp" id="cup_1" class="active" />
+			<img src="images/demo/cup->cup_matcha.webp" id="cup_2" />
+			<img src="images/demo/cup->panda.webp" id="cup_3" />
+			<div class="overlay" id="cup_overlay"></div>
+		    </div></td>
+		  </tr>
+		  <tr>
+		    <td colspan="3" class="prompt">"A cup of <a href="#" id="cup_text_1" onclick="activate('cup', 1, 3);" class="active">coffee with drawing of lion</a> <a href="#" id="cup_text_2" onclick="activate('cup', 2, 3);">matcha with drawing of tulip</a> <a href="#" id="cup_text_3" onclick="activate('cup', 3, 3);">coffee with drawing of panda</a>."</td>
+		  </tr>
+		</table>
+		<table id="cat_table" class="carousel_table" style="left:1950;">
+		  <tr><td><b>Input Image</b></td><td></td><td><b>Edited Image</b></td></tr>
+		  <tr>
+		    <td><img src="images/demo/cat.jpg" /></td>
+		    <td><center>&rightarrow;</center></td>
+		    <td><div class="img-stack">
+			<img src="images/demo/cat->blackcat.webp" id="cat_1" />
+			<img src="images/demo/cat->chimpanzee.webp" id="cat_2" />
+			<img src="images/demo/cat->whitecat.webp" id="cat_3" class="active" />
+			<div class="overlay" id="cat_overlay"></div>
+		    </div></td>
+		  </tr>
+		  <tr>
+		    <td colspan="3" class="prompt">"A <a href="#" id="cat_text_1" onclick="activate('cat', 1, 3);">black cat</a> <a href="#" id="cat_text_2" onclick="activate('cat', 2, 3);">chimpanzee</a> <a href="#" id="cat_text_3" onclick="activate('cat', 3, 3);" class="active">white cat</a> standing on a fence."</td>
+		  </tr>
+		</table>
+		<table id="woman_table" class="carousel_table" style="left:2600px;">
+		  <tr><td><b>Input Image</b></td><td></td><td><b>Edited Image</b></td></tr>
+		  <tr>
+		    <td><img src="images/demo/woman.webp" /></td>
+		    <td><center>&rightarrow;</center></td>
+		    <td><div class="img-stack">
+			<img src="images/demo/woman->emma stone.webp" id="woman_1" class="active" />
+			<img src="images/demo/woman->emma watson.webp" id="woman_2" />
+			<img src="images/demo/woman->princess_diana.webp" id="woman_3" />
+            <img src="images/demo/woman->scarlett johasson.webp" id="woman_4" />
+            <img src="images/demo/woman->taylor swift.webp" id="woman_5" />
+            <img src="images/demo/woman->old_woman.webp" id="woman_6" />
+			<div class="overlay" id="woman_overlay"></div>
+		    </div></td>
+		  </tr>
+		  <tr>
+		    <td colspan="6" class="prompt">"<a href="#" id="woman_text_1" onclick="activate('woman', 1, 6);" class="active">Emma Stone</a> <a href="#" id="woman_text_2" onclick="activate('woman', 2, 6);">Emma Watson</a> <a href="#" id="woman_text_3" onclick="activate('woman', 3, 6);">Princess Diana</a> <a href="#" id="woman_text_4" onclick="activate('woman', 4, 6);">Scarlett Johasson</a> <a href="#" id="woman_text_5" onclick="activate('woman', 5, 6);">Taylor Swift</a> <a href="#" id="woman_text_6" onclick="activate('woman', 6, 6);">Old woman</a>."</td>
+		  </tr>
+		</table>
+	      </div>
+	    </center>
+	  </td>
+	  <td style="width:5%;font-size:150%;" valign="top"><center><div style="height:300px;position:relative;"><a href="#" onclick="move(1);" class="btn" style="position:absolute;top:147px;">&#9658;</a></div></center></td>
+	</tr>
+      </table>
+      <span style="font-size:110%;">SwiftEdit establishes a new efficiency standard in text-guided image editing, delivering instant, realistic, high-quality editing results in just <b>0.23 seconds-at least 50 times</b> faster than traditional multi-step editing methods.</span><br /><br />
+      <b><a href="https://swift-edit.github.io/" class="lnk">arXiv</a></b>&nbsp;&nbsp;|&nbsp;&nbsp;<b><a href="https://swift-edit.github.io/" class="lnk">PDF</a></b>
+    </center>
+    <br />
+    <div id="abstract" style="border-top:1px solid gray;">
+    <h2>Abstract</h2>
+    <p>
+        Recent advances in text-guided image editing enable users to perform image edits through simple text inputs, leveraging the extensive priors of multi-step diffusion-based text-to-image models. However, these methods often fall short of the speed demands required for real-world and on-device applications due to the costly multi-step inversion and sampling process involved. In response to this, we introduce SwiftEdit, a simple yet highly efficient editing tool that achieve instant text-guided image editing (<b>in 0.23s</b>). The advancement of SwiftEdit lies in its two novel contributions: a one-step inversion framework that enables one-step image reconstruction via inversion and a mask-guided editing technique with our proposed attention rescaling mechanism to perform localized image editing. Extensive experiments are provided to demonstrate the effectiveness and efficiency of SwiftEdit. In particular, SwiftEdit enables instant text-guided image editing, which is extremely faster than previous multi-step methods (at least <b>50 times faster</b>) while maintain a competitive performance in editing results.
+    </p>
+    </div>
+    <div id="video_demo" style="border-top:1px solid gray;">
+    <h2>Video Demonstration</h2>
+        <p>
+            SwiftEdit is a user-friendly, lightning-fast editing tool that enables instant edits through simple and flexible prompts, delivering highly desirable results. Watch the video to learn more!
+        </p>
+        <!-- <div class="item item-steve">
+            <video poster="" id="steve" autoplay controls muted loop playsinline width="80%">
+                <source src="images/demo/video_demo.mp4"
+                        type="video/mp4"> 
+            </video>
+        </div> -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <div class="publication-video">
+              <iframe src="https://www.youtube.com/embed/nNT5wC5FeZU"
+                      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+    </div>
+    <br />
+    <div id="examples" style="border-top:1px solid gray;">
+    <h2>Additional Examples</h2>
+    <h3>Facial Identity and Expression Editing via simple text</h3>
+    <center>
+      <img src="images/demo/facial_edit.png" style="width:100%;" /><br /><br />
+      <!-- <table style="width:90%;text-align:center;">
+	<tr>
+	  <td class="gif"><img src="images/gifs/wooden_chair.gif" style="width:80%;" /><br />"A wooden chair"</td>
+	  <td class="gif"><img src="images/gifs/colorful_tulips.gif" style="width:80%;" /><br />"A vase of colorful tulips"</td>
+	  <td class="gif"><img src="images/gifs/wedding_womandog.gif" style="width:80%;" /><br />"A white wedding womandog"</td>
+	</tr>
+      </table> -->
+    </center>
+    <h3>Comparison with other methods on PieBench benchmark</h3>
+    <center>
+      <img src="images/demo/main_qual.png" style="width:100%;" /><br /><br />
+    </center>
+    <center>
+      <img src="images/demo/supp_qual1.png" style="width:100%;" /><br /><br />
+    </center>
+    <center>
+      <img src="images/demo/supp_qual2.png" style="width:100%;" /><br /><br />
+    </center>
+    <center>
+      <img src="images/demo/supp_qual3.png" style="width:100%;" /><br /><br />
+    </center>
+    </div>
+    <br />
+    <div id="method" style="border-top:1px solid gray;">
+    <h2>Method (a): Two-stage training for One-step Inversion Network</h2>
+    We introduce a two-stage training strategy to train a one-step inversion network that predicts the inverted noise to reconstruct a given source input image when passed through SBv2. This enables single-step reconstruction of any input images without further retraining.
+    <center>
+      <img src="images/method/main_diagram.png" style="width:100%;" />
+    </center><br />
+    </div>
+    <br />
+    <div id="tedbench" style="border-top:1px solid gray;">
+    <h2>Method (b): Attention Rescaling for Mask-aware Editing (ARaM)</h2>
+    During inference, we develop a self-guided editing mask, which is automatically extracted from our one-step inversion network to locate edited regions. Based on this mask, we proposed an attention-rescaling technique to perform disentangled editing and control the editing strength while preserving essential background elements
+    <center>
+        <img src="images/method/aram.png" style="width:100%;" />
+    </center>
+    </div>  
+    <br />
+    <div id="paper" style="border-top:1px solid gray;">
+    <h2>Paper</h2>
+    <table><tr>
+	<td valign="middle"><img src="images/paper.png" style="width:200px;" /></td>
+	<!-- <td valign="top">
+	  <b>"Imagic: Text-Based Real Image Editing with Diffusion Models"</b>,<br /><br/>
+	  Bahjat Kawar<sup>*</sup>, Shiran Zada<sup>*</sup>, Oran Lang, Omer Tov, Huiwen Chang, Tali Dekel, Inbar Mosseri, and Michal Irani.<br /><br />
+      Conference on Computer Vision and Pattern Recognition (CVPR) 2023<br /><br />
+	  <b>[</b><a href="https://arxiv.org/pdf/2210.09276.pdf" class="lnk">PDF</a><b>]</b>
+	</td> -->
+    </tr></table>
+    </div><br />
+    <div id="bibtex" style="border-top:1px solid gray;">
+    <h2>BibTeX</h2>
+    <!-- <center><pre><code>@inproceedings{kawar2023imagic,
+      title={Imagic: Text-Based Real Image Editing with Diffusion Models},
+      author={Kawar, Bahjat and Zada, Shiran and Lang, Oran and Tov, Omer and Chang, Huiwen and Dekel, Tali and Mosseri, Inbar and Irani, Michal},
+      booktitle={Conference on Computer Vision and Pattern Recognition 2023},
+      year={2023}
+}</code></pre></center> -->
+    </div>
+</div></center>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
