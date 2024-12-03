@@ -208,19 +208,18 @@
         </a> &emsp;
   </div>
   <div class="content">
-    <h2 style="text-align:center;">Abstract</h2>
-    <p>Text-to-image diffusion models are nothing but a revolution, allowing anyone, even without design skills, to
-      create realistic images from simple text inputs. With powerful personalization tools like DreamBooth, they can
-      generate images of a specific person just by learning from his/her few reference images. However, when misused,
-      such a powerful and convenient tool can produce fake news or disturbing content targeting any individual victim,
-      posing a severe negative social impact. In this paper, we explore a defense system called Anti-DreamBooth against
-      such malicious use of DreamBooth. The system aims to add subtle noise perturbation to each user's image before
-      publishing in order to disrupt the generation quality of any DreamBooth model trained on these perturbed images.
-      We investigate a wide range of algorithms for perturbation optimization and extensively evaluate them on two
-      facial datasets over various text-to-image model versions. Despite the complicated formulation of DreamBooth and
-      Diffusion-based text-to-image models, our methods effectively defend users from the malicious use of those models.
-      Their effectiveness withstands even adverse conditions, such as model or prompt/term mismatching between training
-      and testing.</p>
+    <h style="text-align:center;">Abstract</h2>
+    <p>Recent advances in text-guided image editing enable users to perform image edits through simple text inputs, 
+      leveraging the extensive priors of multi-step diffusion-based text-to-image models. However, 
+      these methods often fall short of the speed demands required for real-world and on-device applications due to 
+      the costly multi-step inversion and sampling process involved. In response to this, we introduce SwiftEdit, 
+      a simple yet highly efficient editing tool that achieve instant text-guided image editing (<b>in 0.23s</b>). 
+      The advancement of SwiftEdit lies in its two novel contributions: a one-step inversion framework that enables one-step image 
+      reconstruction via inversion and a mask-guided editing technique with our proposed attention rescaling mechanism to 
+      perform localized image editing. Extensive experiments are provided to demonstrate the effectiveness and efficiency of SwiftEdit. 
+      In particular, SwiftEdit enables instant text-guided image editing, which is extremely faster than previous multi-step methods 
+      (at least <b>50 times faster</b>) while maintain a competitive performance in editing results.
+    </p>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
