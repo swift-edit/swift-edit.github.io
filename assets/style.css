@@ -12,6 +12,10 @@ body {
   background: none;
   border: none;
 }
+.btntable:hover {
+  color:gray;
+  text-decoration:none;
+}
 .btn {
   color:black;
   text-decoration:none;
