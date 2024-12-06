@@ -7,14 +7,6 @@ body {
   background-color: #fff;
 }
 .btntable {
-  color:black;
-  text-decoration:none;
-}
-.btntable:hover {
-  color:gray;
-  text-decoration:none;
-}
-.btntable {
   color: pink; /* Text color */
   background-color: transparent; /* Remove background */
   border: none;
@@ -22,7 +14,7 @@ body {
   font-size: 24px;
 }
 @media (max-width: 768px) {
-  .btn {
+  .btntable {
       background-color: transparent; /* Ensure consistency */
       color: pink;
   }
