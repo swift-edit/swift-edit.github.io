@@ -6,7 +6,7 @@ body {
   font-weight: 300;
   background-color: #fff;
 }
-.btntable {
+.btn {
   color: pink; /* Text color */
   background-color: transparent; /* Remove background */
   border: none;
@@ -14,13 +14,13 @@ body {
   font-size: 24px;
 }
 @media (max-width: 768px) {
-  .btntable {
+  .btn {
       background-color: transparent; /* Ensure consistency */
       color: pink;
   }
 }
-a.btntable:focus,
-a.btntable:active {
+a.btn:focus,
+a.btn:active {
   outline: none; /* Remove focus styles */
   background-color: transparent; /* No active state */
 }
