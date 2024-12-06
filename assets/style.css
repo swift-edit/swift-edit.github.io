@@ -7,6 +7,8 @@ body {
   background-color: #fff;
 }
 .btn {
+  all: unset; /* Remove inherited/default browser styles */
+  font-family: Arial, sans-serif;
   color: blue; /* Text color */
   background-color: transparent; /* Remove background */
   border: none;
