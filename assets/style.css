@@ -7,7 +7,7 @@ body {
   background-color: #fff;
 }
 .btn {
-  color: pink; /* Text color */
+  color: blue; /* Text color */
   background-color: transparent; /* Remove background */
   border: none;
   padding: 10px;
